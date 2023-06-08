@@ -24,6 +24,15 @@ public class Ship {
   }
 
   /**
+   * Gets the ship type
+   *
+   * @return the type
+   */
+  public ShipType getType() {
+    return this.type;
+  }
+
+  /**
    * Gets the coords of the ship
    *
    * @return a list of coords of the ship

@@ -18,7 +18,7 @@ public class Coord {
    * @param col the column on the board
    * @param type the type of coord
    */
-  public Coord(int row, int col, CoordType type) {
+  public Coord(int col, int row, CoordType type) {
     this.row = row;
     this.col = col;
     this.type = type;

@@ -124,11 +124,16 @@ public abstract class SalvoPlayer implements Player {
     Coord coord = generateRandomCoord(type);
     coords.add(coord);
     for (int j = 1; j < type.getSize(); j++) {
-      if (coord.getRow() + j > this.userBoard.length - 1
-          || !this.userBoard[coord.getRow() + j][coord.getCol()].isEmpty()) {
+      Coord c;
+      try {
+        c = userBoard[coord.getRow() + j][coord.getCol()];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return placeHorizontalShip(type);
+      }
+      if (!c.isEmpty()) {
         return placeHorizontalShip(type);
       } else {
-        coords.add(this.userBoard[coord.getRow() + j][coord.getCol()]);
+        coords.add(c);
       }
     }
     for (Coord validCord : coords) {
@@ -148,11 +153,16 @@ public abstract class SalvoPlayer implements Player {
     Coord coord = generateRandomCoord(type);
     coords.add(coord);
     for (int j = 1; j < type.getSize(); j++) {
-      if (coord.getCol() + j > this.userBoard[0].length - 1
-          || !this.userBoard[coord.getRow()][coord.getCol() + j].isEmpty()) {
+      Coord c;
+      try {
+        c = userBoard[coord.getRow()][coord.getCol() + j];
+      } catch (ArrayIndexOutOfBoundsException e) {
+        return placeHorizontalShip(type);
+      }
+      if (!c.isEmpty()) {
         return placeVerticalShip(type);
       } else {
-        coords.add(this.userBoard[coord.getRow()][coord.getCol() + j]);
+        coords.add(c);
       }
     }
     for (Coord validCord : coords) {
@@ -330,14 +340,12 @@ public abstract class SalvoPlayer implements Player {
    * @param width the width of the board
    */
   private void initializeBoards(int height, int width) {
-    this.userBoard = new Coord[height][];
-    this.opponentBoard = new Coord[height][];
+    this.userBoard = new Coord[height][width];
+    this.opponentBoard = new Coord[height][width];
     for (int i = 0; i < height; i++) {
-      this.userBoard[i] = new Coord[width];
-      this.opponentBoard[i] = new Coord[width];
       for (int j = 0; j < width; j++) {
-        this.userBoard[i][j] = new Coord(i, j, CoordType.EMPTY);
-        this.opponentBoard[i][j] = new Coord(i, j, CoordType.EMPTY);
+        this.userBoard[i][j] = new Coord(j, i, CoordType.EMPTY);
+        this.opponentBoard[i][j] = new Coord(j, i, CoordType.EMPTY);
       }
     }
   }

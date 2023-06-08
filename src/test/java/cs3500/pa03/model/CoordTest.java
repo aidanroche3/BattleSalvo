@@ -38,10 +38,10 @@ class CoordTest {
    */
   @Test
   void getRow() {
-    assertEquals(10, empty.getRow());
+    assertEquals(5, empty.getRow());
     assertEquals(0, hit.getRow());
-    assertEquals(2, miss.getRow());
-    assertEquals(3, ship.getRow());
+    assertEquals(5, miss.getRow());
+    assertEquals(8, ship.getRow());
   }
 
   /**
@@ -49,10 +49,10 @@ class CoordTest {
    */
   @Test
   void getCol() {
-    assertEquals(5, empty.getCol());
+    assertEquals(10, empty.getCol());
     assertEquals(0, hit.getCol());
-    assertEquals(5, miss.getCol());
-    assertEquals(8, ship.getCol());
+    assertEquals(2, miss.getCol());
+    assertEquals(3, ship.getCol());
   }
 
   /**
