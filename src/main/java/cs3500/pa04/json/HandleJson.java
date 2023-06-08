@@ -42,7 +42,7 @@ public class HandleJson {
   /**
    * Handles a Json setup request
    *
-   * @param args the received arguments
+   * @param args     the received arguments
    * @param computer the computer player
    * @return a serialized Json response
    */
@@ -88,10 +88,10 @@ public class HandleJson {
    * Handles a Json reportDamage request
    *
    * @param args the received arguments
-   * @param computer the computer player
+   * @param computer the computer
    * @return a serialized Json response
    */
-   public JsonNode handleReportDamage(JsonNode args, ComputerPlayer computer) {
+  public JsonNode handleReportDamage(JsonNode args, ComputerPlayer computer) {
     CoordinatesJson coordinatesJson = mapper.convertValue(args, CoordinatesJson.class);
     List<Coord> coords = new ArrayList<>();
     for (CoordJson coordJson : coordinatesJson.coords()) {
@@ -108,16 +108,16 @@ public class HandleJson {
     JsonNode damageNode = JsonUtils.serializeRecord(damageCoordinates);
     MessageJson reportDamageMessage = new MessageJson("report-damage", damageNode);
     return JsonUtils.serializeRecord(reportDamageMessage);
-   }
+  }
 
   /**
    * Handles a Json successfulHits request
    *
-   * @param args the received arguments
+   * @param args     the received arguments
    * @param computer the computer player
    * @return a serialized Json response
    */
-   public JsonNode handleSuccessfulHits(JsonNode args, ComputerPlayer computer) {
+  public JsonNode handleSuccessfulHits(JsonNode args, ComputerPlayer computer) {
     CoordinatesJson coordinatesJson;
     coordinatesJson = mapper.convertValue(args, CoordinatesJson.class);
     List<Coord> coords = new ArrayList<>();
@@ -129,23 +129,23 @@ public class HandleJson {
     JsonNode node = mapper.createObjectNode();
     MessageJson successfulHitsMessage = new MessageJson("successful-hits", node);
     return JsonUtils.serializeRecord(successfulHitsMessage);
-   }
+  }
 
   /**
    * Handles a Json endGame request
    *
-   * @param args the received arguments
+   * @param args     the received arguments
    * @param computer the computer player
    * @return a serialized Json response
    */
-   public JsonNode handleEndGame(JsonNode args, ComputerPlayer computer) {
-     EndJson endJson = mapper.convertValue(args, EndJson.class);
-     GameResult result = endJson.result();
-     String reason = endJson.reason();
-     computer.endGame(result, reason);
-     JsonNode node = mapper.createObjectNode();
-     MessageJson endGameMessage = new MessageJson("end-game", node);
-     return JsonUtils.serializeRecord(endGameMessage);
-   }
+  public JsonNode handleEndGame(JsonNode args, ComputerPlayer computer) {
+    EndJson endJson = mapper.convertValue(args, EndJson.class);
+    GameResult result = endJson.result();
+    String reason = endJson.reason();
+    computer.endGame(result, reason);
+    JsonNode node = mapper.createObjectNode();
+    MessageJson endGameMessage = new MessageJson("end-game", node);
+    return JsonUtils.serializeRecord(endGameMessage);
+  }
 
 }
