@@ -3,6 +3,8 @@ package cs3500.pa04.json;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import cs3500.pa03.model.GameResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 class HandleJsonTest extends JsonTest {
 
   private HandleJson handler;
+  private ObjectMapper mapper;
 
   /**
    * Initializes the test data
@@ -19,6 +22,7 @@ class HandleJsonTest extends JsonTest {
   @BeforeEach
   public void setup() {
     handler = new HandleJson();
+    mapper = new ObjectMapper();
   }
 
   /**
@@ -26,8 +30,9 @@ class HandleJsonTest extends JsonTest {
    */
   @Test
   public void testHandleJoin() {
+    JsonNode expected = joinResponse("user", GameType.SINGLE);
     JsonNode response = handler.handleJoin();
-    assertEquals(join, response);
+    assertEquals(expected, response);
   }
 
   /**
@@ -35,8 +40,12 @@ class HandleJsonTest extends JsonTest {
    */
   @Test
   public void testHandleSetup() {
-    JsonNode response = handler.handleSetup(setupArgs, player);
-    assertEquals(setup, response);
+    JsonNode setupRequest = setupRequest(
+        6, 6, 1, 1, 1, 1);
+    MessageJson message = mapper.convertValue(setupRequest, MessageJson.class);
+    JsonNode response = handler.handleSetup(message.arguments(), player);
+    JsonNode expected = setupResponse(ships);
+    assertEquals(expected, response);
   }
 
   /**
@@ -46,7 +55,8 @@ class HandleJsonTest extends JsonTest {
   public void testHandleTakeShots() {
     setupBoard();
     JsonNode response = handler.handleTakeShots(player);
-    assertEquals(takeShots, response);
+    JsonNode expected = takeShotsResponse(shots);
+    assertEquals(expected, response);
   }
 
   /**
@@ -55,8 +65,10 @@ class HandleJsonTest extends JsonTest {
   @Test
   public void testReportDamage() {
     setupBoard();
-    JsonNode response = handler.handleReportDamage(reportDamageArgs, player);
-    assertEquals(reportDamage, response);
+    JsonNode reportDamageRequest = reportDamage(coords);
+    MessageJson message = mapper.convertValue(reportDamageRequest, MessageJson.class);
+    JsonNode response = handler.handleReportDamage(message.arguments(), player);
+    assertEquals(reportDamageRequest, response);
   }
 
   /**
@@ -65,8 +77,11 @@ class HandleJsonTest extends JsonTest {
   @Test
   public void testSuccessfulHits() {
     setupBoard();
-    JsonNode response = handler.handleSuccessfulHits(successfulArgs, player);
-    assertEquals(successfulHits, response);
+    JsonNode successfulHits = successfulHitsRequest(hits);
+    MessageJson message = mapper.convertValue(successfulHits, MessageJson.class);
+    JsonNode response = handler.handleSuccessfulHits(message.arguments(), player);
+    JsonNode expected = successfulHitsResponse();
+    assertEquals(expected, response);
   }
 
   /**
@@ -75,8 +90,11 @@ class HandleJsonTest extends JsonTest {
   @Test
   public void testEndGame() {
     setupBoard();
-    JsonNode response = handler.handleEndGame(endGameArgs, player);
-    assertEquals(endGame, response);
+    JsonNode endGame = endGameRequest(GameResult.WIN, "You win because...");
+    MessageJson message = mapper.convertValue(endGame, MessageJson.class);
+    JsonNode response = handler.handleEndGame(message.arguments(), player);
+    JsonNode expected = endGameResponse();
+    assertEquals(expected, response);
   }
 
 }

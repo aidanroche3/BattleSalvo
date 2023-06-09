@@ -53,7 +53,7 @@ public class ProxyController implements Controller {
       }
 
     } catch (IOException e) {
-      System.out.println(e.getMessage());
+      throw new IllegalStateException(e);
     }
   }
 
