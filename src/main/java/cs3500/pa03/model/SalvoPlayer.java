@@ -349,5 +349,4 @@ public abstract class SalvoPlayer implements Player {
       }
     }
   }
-
 }

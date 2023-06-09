@@ -29,10 +29,10 @@ class ShipAdapterTest extends SalvoTest {
   }
 
   /**
-   * Tests the jsonToShip method
+   * Tests the ShipToJson method
    */
   @Test
-  public void testJsonToShip() {
+  public void testShipToJson() {
     assertEquals(verticalJson, ShipAdapter.shipToJson(carrier));
     assertEquals(horizontalJson, ShipAdapter.shipToJson(battleship));
   }
