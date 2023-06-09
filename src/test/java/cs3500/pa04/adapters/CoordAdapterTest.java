@@ -1,4 +1,4 @@
-package pa04.adapters;
+package cs3500.pa04.adapters;
 
 import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.CoordType;

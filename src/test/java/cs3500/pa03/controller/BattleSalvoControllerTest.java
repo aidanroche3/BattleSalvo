@@ -7,9 +7,9 @@ import cs3500.pa03.model.ConsolePlayer;
 import cs3500.pa03.model.ConsolePlayerDependencies;
 import cs3500.pa03.view.BattleSalvoConsoleView;
 import cs3500.pa03.view.BattleSalvoView;
+import cs3500.pa04.MockRandom;
 import java.io.StringReader;
 import org.junit.jupiter.api.Test;
-import pa04.MockRandom;
 
 /**
  * Tests the BattleSalvoController test and its associated methods
@@ -377,7 +377,7 @@ class BattleSalvoControllerTest {
     BattleSalvoController loseController =
         new BattleSalvoController(loseView, losePlayerOne, losePlayerTwo);
     String expected = """
-        
+                
         Welcome to BattleSalvo, Battleship with a twist!
         Please enter a valid height and width below:
         -----------------------------------------------------

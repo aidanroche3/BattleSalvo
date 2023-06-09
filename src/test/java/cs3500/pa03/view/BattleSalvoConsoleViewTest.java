@@ -10,11 +10,11 @@ import cs3500.pa03.model.ConsolePlayerDependencies;
 import cs3500.pa03.model.GameResult;
 import cs3500.pa03.model.SalvoPlayer;
 import cs3500.pa03.model.ShipType;
+import cs3500.pa04.MockRandom;
 import java.io.StringReader;
 import java.util.HashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pa04.MockRandom;
 
 class BattleSalvoConsoleViewTest {
 

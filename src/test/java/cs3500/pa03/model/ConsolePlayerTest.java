@@ -3,12 +3,12 @@ package cs3500.pa03.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import cs3500.pa04.MockRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pa04.MockRandom;
 
 /**
  * Tests ConsolePlayer and its associated methods
