@@ -16,7 +16,6 @@ public class RandomDecorator implements Randomable {
     this.rand = new Random();
   }
 
-
   /**
    * Instantiates a seeded RandomDecorator
    *

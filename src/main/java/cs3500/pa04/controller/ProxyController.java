@@ -60,6 +60,7 @@ public class ProxyController implements Controller {
    * Delegates incoming Json messages
    *
    * @param message the MessageJson to delegate
+   * @throws IOException if an IO error with the server occurs
    */
   private void delegateMessage(MessageJson message) throws IOException {
     String name = message.messageName();
@@ -127,6 +128,7 @@ public class ProxyController implements Controller {
    * Responds to the server with an endGame request
    *
    * @param args the received JsonNode
+   * @throws IOException if an IO error with the server occurs
    */
   private void endGame(JsonNode args) throws IOException {
     JsonNode endGameResponse = handler.handleEndGame(args, this.computer);
