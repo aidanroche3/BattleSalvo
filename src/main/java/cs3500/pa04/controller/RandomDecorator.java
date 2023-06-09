@@ -25,7 +25,6 @@ public class RandomDecorator implements Randomable {
     this.rand = new Random(seed);
   }
 
-
   /**
    * Get the next random integer
    *

@@ -28,6 +28,7 @@ public class ProxyController implements Controller {
    *
    * @param server socket to read and write to
    * @param computer computer player to play the game
+   * @throws IOException if an IO error with the server occurs
    */
   public ProxyController(Socket server, ComputerPlayer computer) throws IOException {
     this.mapper = new ObjectMapper();
