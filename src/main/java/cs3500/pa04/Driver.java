@@ -7,10 +7,10 @@ import cs3500.pa03.model.ConsolePlayerDependencies;
 import cs3500.pa03.view.BattleSalvoConsoleView;
 import cs3500.pa03.view.BattleSalvoView;
 import cs3500.pa04.controller.ProxyController;
+import cs3500.pa04.controller.RandomDecorator;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.util.Random;
 
 /**
  * This is the main driver of this project.
@@ -27,15 +27,15 @@ public class Driver {
         BattleSalvoView view =
             new BattleSalvoConsoleView(new InputStreamReader(System.in), System.out);
         ConsolePlayer playerOne = new ConsolePlayer("User",
-            new Random(), new ConsolePlayerDependencies());
-        ComputerPlayer playerTwo = new ComputerPlayer(new Random());
+            new RandomDecorator(1), new ConsolePlayerDependencies());
+        ComputerPlayer playerTwo = new ComputerPlayer(new RandomDecorator(1));
         new BattleSalvoController(view, playerOne, playerTwo).run();
       }
       case 2 -> {
         ProxyController controller;
         try {
           Socket server = validateServer(args);
-          controller = new ProxyController(server, new ComputerPlayer(new Random()));
+          controller = new ProxyController(server, new ComputerPlayer(new RandomDecorator()));
           controller.run();
         } catch (IOException e) {
           System.err.println("Could not connect to server.");

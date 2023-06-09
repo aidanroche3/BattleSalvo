@@ -1,7 +1,7 @@
 package cs3500.pa03.model;
 
+import cs3500.pa04.controller.Randomable;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Player class for a player playing through the console
@@ -17,7 +17,7 @@ public class ConsolePlayer extends SalvoPlayer {
    * @param random a random object
    * @param dependencies a console player's dependencies
    */
-  public ConsolePlayer(String name, Random random, ConsolePlayerDependencies dependencies) {
+  public ConsolePlayer(String name, Randomable random, ConsolePlayerDependencies dependencies) {
     super(name, random);
     this.dependencies = dependencies;
   }

@@ -1,9 +1,9 @@
 package cs3500.pa03.model;
 
+import cs3500.pa04.controller.Randomable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Abstract class for a BattleSalvo player
@@ -18,7 +18,7 @@ public abstract class SalvoPlayer implements Player {
   /**
    * Random object
    */
-  protected final Random random;
+  protected final Randomable random;
 
   /**
    * List of ships
@@ -46,7 +46,7 @@ public abstract class SalvoPlayer implements Player {
    * @param name the name of the player
    * @param random a random object
    */
-  public SalvoPlayer(String name, Random random) {
+  public SalvoPlayer(String name, Randomable random) {
     this.name = name;
     this.random = random;
   }

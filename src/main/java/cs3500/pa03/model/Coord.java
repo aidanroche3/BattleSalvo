@@ -104,8 +104,4 @@ public class Coord {
         && this.type.equals(other.type);
   }
 
-  public String toString() {
-    return "[" + col + ", " + row + "]";
-  }
-
 }

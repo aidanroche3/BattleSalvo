@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pa04.MockRandom;
 
 /**
  * Class for testing SalvoPlayer and its associated methods
@@ -26,7 +26,7 @@ class SalvoPlayerTest extends SalvoTest {
    */
   @BeforeEach
   public void setup() {
-    consolePlayer = new ConsolePlayer("User", new Random(1),
+    consolePlayer = new ConsolePlayer("User", new MockRandom(),
         new ConsolePlayerDependencies());
     HashMap<ShipType, Integer> specifications = new HashMap<>();
     specifications.put(ShipType.CARRIER, 1);
@@ -118,15 +118,6 @@ class SalvoPlayerTest extends SalvoTest {
    */
   @Test
   void endGame() {
-  }
-
-
-  /**
-   * Tests the packageBoard method
-   */
-  @Test
-  void packageBoard() {
-
   }
 
 }

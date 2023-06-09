@@ -1,8 +1,8 @@
 package cs3500.pa03.model;
 
+import cs3500.pa04.controller.Randomable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Player class for a computer (AI) player
@@ -16,7 +16,7 @@ public class ComputerPlayer extends SalvoPlayer {
    *
    * @param random a random object
    */
-  public ComputerPlayer(Random random) {
+  public ComputerPlayer(Randomable random) {
     super("Computer", random);
   }
 

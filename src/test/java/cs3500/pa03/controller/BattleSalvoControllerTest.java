@@ -8,8 +8,8 @@ import cs3500.pa03.model.ConsolePlayerDependencies;
 import cs3500.pa03.view.BattleSalvoConsoleView;
 import cs3500.pa03.view.BattleSalvoView;
 import java.io.StringReader;
-import java.util.Random;
 import org.junit.jupiter.api.Test;
+import pa04.MockRandom;
 
 /**
  * Tests the BattleSalvoController test and its associated methods
@@ -65,13 +65,17 @@ class BattleSalvoControllerTest {
         4 5
         5 4
         5 5
+        1 2
+        1 3
+        1 5
+        2 3
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     Readable winInput = new StringReader(winInputs);
     Appendable winOutput = new StringBuilder();
     BattleSalvoView winView = new BattleSalvoConsoleView(winInput, winOutput);
-    ConsolePlayer winPlayerOne = new ConsolePlayer("User", new Random(1),
+    ConsolePlayer winPlayerOne = new ConsolePlayer("User", new MockRandom(),
         new ConsolePlayerDependencies());
-    ComputerPlayer winPlayerTwo = new ComputerPlayer(new Random(1));
+    ComputerPlayer winPlayerTwo = new ComputerPlayer(new MockRandom());
     BattleSalvoController winController =
         new BattleSalvoController(winView, winPlayerOne, winPlayerTwo);
     String expected = """
@@ -107,12 +111,12 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m * * * *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
                 
         -----------------------------------------------------
         Computer's board:
@@ -129,13 +133,13 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m * [0;33mM[0m\s
-                        
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
+                
         -----------------------------------------------------
         Computer's board:
                 
@@ -151,17 +155,17 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * * [0;33mM[0m *\s
-        [31mH[0m [36mB[0m * * * *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m * [0;33mM[0m\s
-                        
+        [36mC[0m [0;33mM[0m * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m * [0;33mM[0m\s
+                
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
         * [31mH[0m * * * *\s
         * * [0;33mM[0m * * *\s
         * * * [0;33mM[0m * *\s
@@ -173,17 +177,17 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m * * * *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [0;33mM[0m * * * [0;33mM[0m\s
+        [31mH[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * * * *\s
         [31mH[0m * [0;33mM[0m * * *\s
         [31mH[0m * * [0;33mM[0m * *\s
@@ -195,19 +199,19 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * * * *\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * * *\s
         [31mH[0m [31mH[0m * [0;33mM[0m * *\s
         [31mH[0m * * * * *\s
         [31mH[0m * * * * *\s
@@ -227,19 +231,19 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * * * *\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * [0;33mM[0m * *\s
         [31mH[0m [31mH[0m * * * *\s
         [31mH[0m [31mH[0m * * * *\s
@@ -249,19 +253,19 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [36mS[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m * * [31mH[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * [0;33mM[0m * *\s
         [31mH[0m [31mH[0m * [31mH[0m [31mH[0m *\s
         [31mH[0m [31mH[0m * [0;33mM[0m * *\s
@@ -271,19 +275,41 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [36mS[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [31mH[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m * * [31mH[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m * [0;33mM[0m * *\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m * [0;33mM[0m * *\s
         [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
         [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
@@ -294,6 +320,7 @@ class BattleSalvoControllerTest {
         You WIN because: User has sunk all of Computer's ships.
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     winController.run();
+    System.out.println(winOutput);
     assertEquals(expected, winOutput.toString());
   }
 
@@ -304,50 +331,53 @@ class BattleSalvoControllerTest {
   void testRunLose() {
     String loseInputs = """
         6 6
-        1 1 1 3
-        0 0
-        1 1
-        2 2
-        3 3
-        4 4
-        5 5
-        0 5
-        1 4
-        2 3
-        3 2
-        4 1
-        5 0
-        0 4
+        1 1 1 1
+        0 1
+        0 2
         0 3
-        1 3
-        1 5
+        0 4
+        0 5
+        2 1
+        2 2
+        2 3
         2 4
         2 5
-        2 0
-        3 0
+        3 2
+        3 3
+        3 4
+        3 5
         5 2
         5 3
-        3 5
-        5 1
         5 4
-        4 5
-        0 1
-        1 2
-        0 2
+        5 5
+        0 0
         1 0
+        2 0
+        3 0
+        4 0
+        1 1
+        1 2
+        1 3
+        1 4
+        3 1
+        4 1
+        4 2
         4 3
+        4 4
+        5 0
+        5 1
+        1 5
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     Readable loseInput = new StringReader(loseInputs);
     Appendable loseOutput = new StringBuilder();
     BattleSalvoView loseView = new BattleSalvoConsoleView(loseInput, loseOutput);
-    ConsolePlayer losePlayerOne = new ConsolePlayer("User", new Random(1),
+    ConsolePlayer losePlayerOne = new ConsolePlayer("User", new MockRandom(),
         new ConsolePlayerDependencies());
-    ComputerPlayer losePlayerTwo = new ComputerPlayer(new Random(1));
+    ComputerPlayer losePlayerTwo = new ComputerPlayer(new MockRandom());
     BattleSalvoController loseController =
         new BattleSalvoController(loseView, losePlayerOne, losePlayerTwo);
-    loseController.run();
     String expected = """
-                
+        
         Welcome to BattleSalvo, Battleship with a twist!
         Please enter a valid height and width below:
         -----------------------------------------------------
@@ -357,12 +387,12 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m [36mS[0m * * *\s
-        [36mC[0m [36mB[0m [36mS[0m * * *\s
-        [36mC[0m [36mB[0m [36mS[0m [36mS[0m [36mS[0m [36mS[0m\s
-        [36mC[0m [36mB[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m * * * *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
                 
         -----------------------------------------------------
         Computer's board:
@@ -374,143 +404,210 @@ class BattleSalvoControllerTest {
         * * * * * *\s
         * * * * * *\s
                 
-        Please enter 6 shots.
+        Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m [36mS[0m * * *\s
-        [31mH[0m [36mB[0m [31mH[0m * * [0;33mM[0m\s
-        [36mC[0m [31mH[0m [36mS[0m [36mS[0m [36mS[0m [36mS[0m\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
                 
         -----------------------------------------------------
         Computer's board:
                 
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        * * * * * *\s
+        * * * * * *\s
+        * * * * * *\s
+        * * * * * *\s
+        * * * * * *\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [36mC[0m [0;33mM[0m * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m * [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * * *\s
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m * *\s
+        * * * * * *\s
+        * * * * * *\s
+        * * * * * *\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [36mC[0m [0;33mM[0m * * * [0;33mM[0m\s
+        [31mH[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * * *\s
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * [0;33mM[0m [0;33mM[0m * *\s
+        * * * * * *\s
+        * * * * * *\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [31mH[0m [0;33mM[0m * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * * *\s
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * * *\s
+        * * [0;33mM[0m [0;33mM[0m * *\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m * * * * *\s
-        * [31mH[0m * * * *\s
-        * * [31mH[0m * * *\s
-        * * * [31mH[0m * *\s
-        * * * * [31mH[0m *\s
-        * * * * * [0;33mM[0m\s
+        * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * * *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
-        Please enter 6 shots.
+        Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [31mH[0m [31mH[0m [36mS[0m * * [0;33mM[0m\s
-        [31mH[0m [36mB[0m [31mH[0m * [0;33mM[0m [0;33mM[0m\s
-        [36mC[0m [31mH[0m [36mS[0m [36mS[0m [36mS[0m [36mS[0m\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m [0;33mM[0m * [0;33mM[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m * * * * [0;33mM[0m\s
-        * [31mH[0m * * [0;33mM[0m *\s
-        * * [31mH[0m [0;33mM[0m * *\s
-        * * [31mH[0m [31mH[0m * *\s
-        * [31mH[0m * * [31mH[0m *\s
-        [31mH[0m * * * * [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m * * * *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * * * * *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
-        Please enter 6 shots.
+        Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m [0;33mM[0m [36mS[0m [36mS[0m [36mS[0m *\s
-        [31mH[0m [31mH[0m [31mH[0m * * [0;33mM[0m\s
-        [31mH[0m [36mB[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [36mS[0m [36mS[0m [36mS[0m\s
-        [36mC[0m [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m [0;33mM[0m * [0;33mM[0m *\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m * * [31mH[0m [31mH[0m [0;33mM[0m\s
-        * [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        * * [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        * * [31mH[0m [31mH[0m * *\s
-        * [31mH[0m * * [31mH[0m *\s
-        [31mH[0m * * * * [0;33mM[0m\s
-                
-        Please enter 5 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [36mS[0m [31mH[0m [36mS[0m\s
-        [36mC[0m [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m * * [31mH[0m [31mH[0m [0;33mM[0m\s
-        * [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m * [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m * [31mH[0m [31mH[0m * [31mH[0m\s
-        * [31mH[0m * * [31mH[0m *\s
-        [31mH[0m * [0;33mM[0m [0;33mM[0m * [0;33mM[0m\s
-                
-        Please enter 5 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [36mC[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [36mC[0m [36mB[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m * [31mH[0m [31mH[0m [0;33mM[0m\s
-        * [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m * [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m * [31mH[0m [31mH[0m * [31mH[0m\s
-        * [31mH[0m * * [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * * * * *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 3 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [36mB[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mS[0m [31mH[0m\s
-        [36mC[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-   
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [36mD[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
         -----------------------------------------------------
                 
         Game over!
         You LOSE because: Computer has sunk all of User's ships.
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+    loseController.run();
     assertEquals(expected, loseOutput.toString());
   }
 
@@ -522,51 +619,52 @@ class BattleSalvoControllerTest {
     String drawInputs = """
         6 6
         1 1 1 1
-        4 1
-        5 5
         3 2
-        5 3
-        0 5
-        3 0
-        1 4
-        2 0
-        5 4
-        1 3
-        5 0
-        2 2
-        3 1
-        2 5
-        4 0
-        0 3
-        0 0
-        1 1
-        3 4
-        0 2
-        1 0
-        1 5
         4 4
-        5 1
-        0 1
-        2 1
-        4 5
-        4 3
-        1 2
-        3 5
-        0 4
-        2 4
-        2 3
         3 3
+        3 4
+        1 3
+        5 5
+        5 3
+        0 1
+        1 0
+        5 4
+        3 0
+        0 5
+        0 0
+        0 4
+        2 5
+        1 2
+        2 4
+        0 2
+        3 5
+        5 2
         4 2
+        2 1
+        2 2
+        1 4
+        4 5
+        0 3
+        1 1
+        3 1
+        4 3
+        5 0
+        4 1
+        4 0
+        2 0
+        1 5
+        5 1
+        2 3
+        1 0
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     Readable drawInput = new StringReader(drawInputs);
     Appendable drawOutput = new StringBuilder();
     BattleSalvoView drawView = new BattleSalvoConsoleView(drawInput, drawOutput);
-    ConsolePlayer drawPlayerOne = new ConsolePlayer("User", new Random(1),
+    ConsolePlayer drawPlayerOne = new ConsolePlayer("User", new MockRandom(),
         new ConsolePlayerDependencies());
-    ComputerPlayer drawPlayerTwo = new ComputerPlayer(new Random(1));
+    ComputerPlayer drawPlayerTwo = new ComputerPlayer(new MockRandom());
     BattleSalvoController drawController =
         new BattleSalvoController(drawView, drawPlayerOne, drawPlayerTwo);
-    drawController.run();
     String expected = """
                 
         Welcome to BattleSalvo, Battleship with a twist!
@@ -578,12 +676,12 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m * * * *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
                 
         -----------------------------------------------------
         Computer's board:
@@ -600,12 +698,12 @@ class BattleSalvoControllerTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m * [0;33mM[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
                 
         -----------------------------------------------------
         Computer's board:
@@ -613,279 +711,192 @@ class BattleSalvoControllerTest {
         * * * * * *\s
         * * * * * *\s
         * * * * * *\s
-        * * [0;33mM[0m * * *\s
-        * [31mH[0m * * * *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        * * * * [31mH[0m *\s
+        * * * * * *\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [36mC[0m [0;33mM[0m * * * *\s
+        [36mC[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m * [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        * [0;33mM[0m * * * *\s
+        * * * [31mH[0m * *\s
+        * * * * * *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        * * * * [31mH[0m *\s
         * * * [0;33mM[0m * [0;33mM[0m\s
-                        
+                
         Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * * [0;33mM[0m *\s
-        [31mH[0m [36mB[0m * * * *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m * [0;33mM[0m\s
+        [36mC[0m [0;33mM[0m * * * [0;33mM[0m\s
+        [31mH[0m [36mB[0m [36mB[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * *\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
+        * [0;33mM[0m * * * [0;33mM[0m\s
+        [31mH[0m * * [31mH[0m * *\s
+        * * * * * *\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        * * * * [31mH[0m *\s
+        * * * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        Please enter 4 shots.
+        -----------------------------------------------------
+        -----------------------------------------------------
+        User's board:
+                
+        [31mH[0m [0;33mM[0m * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * * [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+                
+        -----------------------------------------------------
+        Computer's board:
+                
+        [31mH[0m [0;33mM[0m * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [31mH[0m [31mH[0m * *\s
         * * * * * [0;33mM[0m\s
-        * * * * [0;33mM[0m *\s
-        [31mH[0m * * * * *\s
-        [31mH[0m * [0;33mM[0m * * *\s
-        * [31mH[0m * * * *\s
-        * * * [0;33mM[0m * [0;33mM[0m\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m *\s
+        * * * * [31mH[0m *\s
+        * * * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * *\s
-        [36mC[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [36mB[0m [36mB[0m\s
+        [36mC[0m * * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        * * * * * [0;33mM[0m\s
-        * * * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m * [0;33mM[0m * * *\s
-        [31mH[0m * [0;33mM[0m * * *\s
-        * [31mH[0m * * * *\s
-        [31mH[0m * * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [31mH[0m [31mH[0m * *\s
+        * * * * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * * * [31mH[0m *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * [36mS[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [36mB[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mB[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [36mD[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        * * * [31mH[0m * [0;33mM[0m\s
-        * * * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m * [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * *\s
-        [31mH[0m [31mH[0m * * * *\s
-        [31mH[0m * * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [31mH[0m [31mH[0m [31mH[0m *\s
+        * [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * [31mH[0m * [31mH[0m *\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [31mH[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [36mC[0m [31mH[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [31mH[0m [36mB[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [36mC[0m [36mS[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m\s
+        [36mC[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m * [31mH[0m [31mH[0m * [0;33mM[0m\s
-        * [31mH[0m * [0;33mM[0m [0;33mM[0m *\s
-        [31mH[0m * [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m * * * *\s
-        [31mH[0m * * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        * [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        * * [31mH[0m * [31mH[0m [31mH[0m\s
+        * * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 4 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m * [31mH[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [36mB[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [31mH[0m [36mD[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [36mB[0m\s
+        [36mC[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [36mS[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m * [31mH[0m [31mH[0m * [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m * [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m * * [31mH[0m *\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m *\s
+        * [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         Please enter 3 shots.
         -----------------------------------------------------
         -----------------------------------------------------
         User's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [36mD[0m [36mD[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m * [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m * * [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 2 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [36mS[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m *\s
-        [31mH[0m [31mH[0m * [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 2 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * * [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 1 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 1 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 1 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [36mD[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        -----------------------------------------------------
-        Computer's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m * [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-                
-        Please enter 1 shots.
-        -----------------------------------------------------
-        -----------------------------------------------------
-        User's board:
-                
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
         Computer's board:
                 
-        [31mH[0m [0;33mM[0m [31mH[0m [31mH[0m [31mH[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
-        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
+        [31mH[0m [0;33mM[0m [0;33mM[0m * [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
         [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m [31mH[0m\s
-        [31mH[0m [31mH[0m * [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
+        [31mH[0m [31mH[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m [0;33mM[0m\s
                 
         -----------------------------------------------------
                 
         Game over!
         You DRAW because: both players have sunk the opponent's ships.
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
+    drawController.run();
     assertEquals(expected, drawOutput.toString());
   }
 }

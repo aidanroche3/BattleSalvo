@@ -12,9 +12,9 @@ import cs3500.pa03.model.SalvoPlayer;
 import cs3500.pa03.model.ShipType;
 import java.io.StringReader;
 import java.util.HashMap;
-import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pa04.MockRandom;
 
 class BattleSalvoConsoleViewTest {
 
@@ -34,10 +34,10 @@ class BattleSalvoConsoleViewTest {
     MockAppendable mockAppendable = new MockAppendable();
     battleSalvoConsoleView = new BattleSalvoConsoleView(input, output);
     mockConsoleView = new BattleSalvoConsoleView(input, mockAppendable);
-    player = new ConsolePlayer("User", new Random(1), new ConsolePlayerDependencies());
+    player = new ConsolePlayer("User", new MockRandom(), new ConsolePlayerDependencies());
     HashMap<ShipType, Integer> specifications = new HashMap<>();
     specifications.put(ShipType.CARRIER, 1);
-    specifications.put(ShipType.BATTLESHIP, 2);
+    specifications.put(ShipType.BATTLESHIP, 1);
     specifications.put(ShipType.DESTROYER, 1);
     specifications.put(ShipType.SUBMARINE, 1);
     player.setup(6, 6, specifications);
@@ -166,13 +166,13 @@ class BattleSalvoConsoleViewTest {
         -----------------------------------------------------
         User's board:
                 
+        [36mC[0m * * * * *\s
         [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mB[0m * [36mS[0m [36mS[0m [36mS[0m\s
-        [36mC[0m [36mB[0m * * * *\s
-        [36mC[0m [36mB[0m * * * *\s
-        
+        [36mC[0m * * * * *\s
+        [36mC[0m [36mS[0m * * * *\s
+        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
+        [36mC[0m [36mS[0m * * * *\s
+                
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     battleSalvoConsoleView.displayBoard(player, player.getUserBoard(), BoardType.USER);
     assertEquals(userExpected, output.toString());

@@ -10,11 +10,11 @@ import java.util.List;
 public abstract class SalvoTest {
 
   protected Coord carrierCoordOne = new Coord(0, 0, CoordType.SHIP);
-  protected Coord carrierCoordTwo = new Coord(1, 0, CoordType.SHIP);
-  protected Coord carrierCoordThree = new Coord(2, 0, CoordType.SHIP);
-  protected Coord carrierCoordFour = new Coord(3, 0, CoordType.SHIP);
-  protected Coord carrierCoordFive = new Coord(4, 0, CoordType.SHIP);
-  protected Coord carrierCoordSix = new Coord(5, 0, CoordType.SHIP);
+  protected Coord carrierCoordTwo = new Coord(0, 1, CoordType.SHIP);
+  protected Coord carrierCoordThree = new Coord(0, 2, CoordType.SHIP);
+  protected Coord carrierCoordFour = new Coord(0, 3, CoordType.SHIP);
+  protected Coord carrierCoordFive = new Coord(0, 4, CoordType.SHIP);
+  protected Coord carrierCoordSix = new Coord(0, 5, CoordType.SHIP);
   protected ArrayList<Coord> carrierCoords =
       new ArrayList<>(Arrays.asList(carrierCoordOne, carrierCoordTwo, carrierCoordThree,
           carrierCoordFour, carrierCoordFive, carrierCoordSix));
@@ -28,17 +28,17 @@ public abstract class SalvoTest {
       new ArrayList<>(Arrays.asList(battleshipCoordOne, battleshipCoordTwo, battleshipCoordThree,
           battleshipCoordFour, battleshipCoordFive));
   protected Ship battleship = new Ship(ShipType.BATTLESHIP, battleshipCoords);
-  protected Coord destroyerCoordOne = new Coord(4, 2, CoordType.SHIP);
-  protected Coord destroyerCoordTwo = new Coord(4, 3, CoordType.SHIP);
+  protected Coord destroyerCoordOne = new Coord(2, 4, CoordType.SHIP);
+  protected Coord destroyerCoordTwo = new Coord(3, 4, CoordType.SHIP);
   protected Coord destroyerCoordThree = new Coord(4, 4, CoordType.SHIP);
-  protected Coord destroyerCoordFour = new Coord(4, 5, CoordType.SHIP);
+  protected Coord destroyerCoordFour = new Coord(5, 4, CoordType.SHIP);
   protected ArrayList<Coord> destroyerCoords =
       new ArrayList<>(Arrays.asList(destroyerCoordOne, destroyerCoordTwo, destroyerCoordThree,
           destroyerCoordFour));
   protected Ship destroyer = new Ship(ShipType.DESTROYER, destroyerCoords);
-  protected Coord submarineCoordOne = new Coord(0, 2, CoordType.SHIP);
-  protected Coord submarineCoordTwo = new Coord(0, 3, CoordType.SHIP);
-  protected Coord submarineCoordThree = new Coord(0, 4, CoordType.SHIP);
+  protected Coord submarineCoordOne = new Coord(1, 3, CoordType.SHIP);
+  protected Coord submarineCoordTwo = new Coord(1, 4, CoordType.SHIP);
+  protected Coord submarineCoordThree = new Coord(1, 5, CoordType.SHIP);
   protected ArrayList<Coord> submarineCoords =
       new ArrayList<>(Arrays.asList(submarineCoordOne, submarineCoordTwo, submarineCoordThree));
   protected Ship submarine = new Ship(ShipType.SUBMARINE, submarineCoords);

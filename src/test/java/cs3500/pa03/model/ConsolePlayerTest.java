@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pa04.MockRandom;
 
 /**
  * Tests ConsolePlayer and its associated methods
@@ -24,7 +24,7 @@ class ConsolePlayerTest {
   @BeforeEach
   void setup() {
     playerDependencies = new ConsolePlayerDependencies();
-    player = new ConsolePlayer("Player", new Random(), playerDependencies);
+    player = new ConsolePlayer("Player", new MockRandom(), playerDependencies);
   }
 
   /**
