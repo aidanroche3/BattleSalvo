@@ -4,6 +4,7 @@ import cs3500.pa03.controller.BattleSalvoController;
 import cs3500.pa03.model.ComputerPlayer;
 import cs3500.pa03.model.ConsolePlayer;
 import cs3500.pa03.model.ConsolePlayerDependencies;
+import cs3500.pa03.model.HardComputer;
 import cs3500.pa03.view.BattleSalvoConsoleView;
 import cs3500.pa03.view.BattleSalvoView;
 import cs3500.pa04.controller.ProxyController;
@@ -19,7 +20,8 @@ public class Driver {
   /**
    * Project entry point
    *
-   * @param args - no command line args required
+   * @param args - no command line args required for user vs. computer games
+   *             - two command line args required for server mode, provide a host and port
    */
   public static void main(String[] args) {
     switch (args.length) {
@@ -28,7 +30,7 @@ public class Driver {
             new BattleSalvoConsoleView(new InputStreamReader(System.in), System.out);
         ConsolePlayer playerOne = new ConsolePlayer("User",
             new RandomDecorator(1), new ConsolePlayerDependencies());
-        ComputerPlayer playerTwo = new ComputerPlayer(new RandomDecorator(1));
+        HardComputer playerTwo = new HardComputer(new RandomDecorator(1));
         new BattleSalvoController(view, playerOne, playerTwo).run();
       }
       case 2 -> {
