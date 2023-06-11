@@ -99,6 +99,9 @@ class ProxyControllerTest extends JsonTest {
     assertThrows(IllegalStateException.class, () -> controller.run());
   }
 
+  /**
+   * Tests the controller for a server where it would lose
+   */
   @Test
   public void testLose() {
     Mocket socket = new Mocket(testLog, List.of(
