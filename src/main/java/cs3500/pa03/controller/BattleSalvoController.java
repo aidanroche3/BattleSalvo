@@ -1,11 +1,11 @@
 package cs3500.pa03.controller;
 
 import cs3500.pa03.model.BoardType;
+import cs3500.pa03.model.ComputerPlayer;
 import cs3500.pa03.model.ConsolePlayer;
 import cs3500.pa03.model.ConsolePlayerDependencies;
 import cs3500.pa03.model.Coord;
 import cs3500.pa03.model.GameResult;
-import cs3500.pa03.model.HardComputer;
 import cs3500.pa03.model.ShipType;
 import cs3500.pa03.view.BattleSalvoView;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class BattleSalvoController implements Controller {
 
   private final BattleSalvoView view;
   private final ConsolePlayer playerOne;
-  private final HardComputer playerTwo;
+  private final ComputerPlayer playerTwo;
 
   /**
    * Instantiates a BattleSalvoController
@@ -27,7 +27,7 @@ public class BattleSalvoController implements Controller {
    * @param one player one
    * @param two player two
    */
-  public BattleSalvoController(BattleSalvoView view, ConsolePlayer one, HardComputer two) {
+  public BattleSalvoController(BattleSalvoView view, ConsolePlayer one, ComputerPlayer two) {
     this.view = view;
     this.playerOne = one;
     this.playerTwo = two;
