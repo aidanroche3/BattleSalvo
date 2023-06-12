@@ -45,6 +45,8 @@ class HandleJsonTest extends JsonTest {
     MessageJson message = mapper.convertValue(setupRequest, MessageJson.class);
     JsonNode response = handler.handleSetup(message.arguments(), player);
     JsonNode expected = setupResponse(ships);
+    System.out.println(response);
+    System.out.println(expected);
     assertEquals(expected, response);
   }
 

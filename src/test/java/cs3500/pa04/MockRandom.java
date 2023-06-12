@@ -10,8 +10,9 @@ public class MockRandom implements Randomable {
   private int intsIndex = 0;
   private int boolIndex = 0;
   private final int[] ints =
-      new int[]{0, 0, 0, 0, 2, 4, 1, 1, 1, 1, 3, 0, 4, 2, 3, 1, 20, 27, 20, 20, 9, 30, 28, 1, 5,
-          26, 15, 4, 0, 2, 11, 3, 9, 0, 9, 16, 11, 5, 5, 2, 9, 0, 0, 3, 5, 5, 4, 3, 1, 0, 1, 0};
+      new int[]{0, 0, 0, 0, 2, 4, 1, 1, 1, 1, 3, 0, 4, 2, 3, 1, 2, 2, 1, 0, 2, 5, 2, 3, 0, 2,
+          25, 34, 20, 31, 5, 17, 9, 10, 27, 8, 23, 10, 13, 12, 15, 3, 0, 4, 10, 1, 2, 3, 10, 11,
+          0, 2, 8, 7, 1, 4, 0, 1, 0, 0, 0};
   private final boolean[] booleans =
       new boolean[]{true, false, false, true, true, false, false, true, true};
 

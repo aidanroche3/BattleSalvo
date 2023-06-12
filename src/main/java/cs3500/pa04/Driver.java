@@ -28,8 +28,8 @@ public class Driver {
         BattleSalvoView view =
             new BattleSalvoConsoleView(new InputStreamReader(System.in), System.out);
         ConsolePlayer playerOne = new ConsolePlayer("User",
-            new RandomDecorator(1), new ConsolePlayerDependencies());
-        ComputerPlayer playerTwo = new ComputerPlayer(new RandomDecorator(1));
+            new RandomDecorator(), new ConsolePlayerDependencies());
+        ComputerPlayer playerTwo = new ComputerPlayer(new RandomDecorator());
         new BattleSalvoController(view, playerOne, playerTwo).run();
       }
       case 2 -> {

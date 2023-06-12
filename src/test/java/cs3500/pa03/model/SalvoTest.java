@@ -20,10 +20,10 @@ public abstract class SalvoTest {
           carrierCoordFour, carrierCoordFive, carrierCoordSix));
   protected Ship carrier = new Ship(ShipType.CARRIER, carrierCoords);
   protected Coord battleshipCoordOne = new Coord(1, 1, CoordType.SHIP);
-  protected Coord battleshipCoordTwo = new Coord(2, 1, CoordType.SHIP);
-  protected Coord battleshipCoordThree = new Coord(3, 1, CoordType.SHIP);
-  protected Coord battleshipCoordFour = new Coord(4, 1, CoordType.SHIP);
-  protected Coord battleshipCoordFive = new Coord(5, 1, CoordType.SHIP);
+  protected Coord battleshipCoordTwo = new Coord(1, 2, CoordType.SHIP);
+  protected Coord battleshipCoordThree = new Coord(1, 3, CoordType.SHIP);
+  protected Coord battleshipCoordFour = new Coord(1, 4, CoordType.SHIP);
+  protected Coord battleshipCoordFive = new Coord(1, 5, CoordType.SHIP);
   protected ArrayList<Coord> battleshipCoords =
       new ArrayList<>(Arrays.asList(battleshipCoordOne, battleshipCoordTwo, battleshipCoordThree,
           battleshipCoordFour, battleshipCoordFive));
@@ -36,9 +36,9 @@ public abstract class SalvoTest {
       new ArrayList<>(Arrays.asList(destroyerCoordOne, destroyerCoordTwo, destroyerCoordThree,
           destroyerCoordFour));
   protected Ship destroyer = new Ship(ShipType.DESTROYER, destroyerCoords);
-  protected Coord submarineCoordOne = new Coord(1, 3, CoordType.SHIP);
-  protected Coord submarineCoordTwo = new Coord(1, 4, CoordType.SHIP);
-  protected Coord submarineCoordThree = new Coord(1, 5, CoordType.SHIP);
+  protected Coord submarineCoordOne = new Coord(2, 0, CoordType.SHIP);
+  protected Coord submarineCoordTwo = new Coord(3, 0, CoordType.SHIP);
+  protected Coord submarineCoordThree = new Coord(4, 0, CoordType.SHIP);
   protected ArrayList<Coord> submarineCoords =
       new ArrayList<>(Arrays.asList(submarineCoordOne, submarineCoordTwo, submarineCoordThree));
   protected Ship submarine = new Ship(ShipType.SUBMARINE, submarineCoords);

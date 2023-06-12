@@ -37,10 +37,10 @@ class ComputerPlayerTest {
    */
   @Test
   void takeShots() {
-    Coord one = new Coord(2, 3, CoordType.EMPTY);
-    Coord two = new Coord(4, 4, CoordType.EMPTY);
-    Coord three = new Coord(3, 3, CoordType.EMPTY);
-    Coord four = new Coord(4, 3, CoordType.EMPTY);
+    Coord one = new Coord(1, 4, CoordType.EMPTY);
+    Coord two = new Coord(5, 5, CoordType.EMPTY);
+    Coord three = new Coord(2, 3, CoordType.EMPTY);
+    Coord four = new Coord(3, 5, CoordType.EMPTY);
     List<Coord> expected = new ArrayList<>(Arrays.asList(one, two, three, four));
     List<Coord> shots = player.takeShots();
     assertTrue(Coord.sameCoords(expected, shots));

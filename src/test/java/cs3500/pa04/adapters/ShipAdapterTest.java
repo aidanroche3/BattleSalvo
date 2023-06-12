@@ -25,7 +25,7 @@ class ShipAdapterTest extends SalvoTest {
     CoordJson verticalCoord = new CoordJson(0, 0);
     verticalJson = new ShipJson(verticalCoord, 6, Direction.VERTICAL);
     CoordJson horizontalCoord = new CoordJson(1, 1);
-    horizontalJson = new ShipJson(horizontalCoord, 5, Direction.HORIZONTAL);
+    horizontalJson = new ShipJson(horizontalCoord, 5, Direction.VERTICAL);
   }
 
   /**

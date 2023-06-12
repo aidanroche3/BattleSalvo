@@ -166,12 +166,12 @@ class BattleSalvoConsoleViewTest {
         -----------------------------------------------------
         User's board:
                 
-        [36mC[0m * * * * *\s
-        [36mC[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m [36mB[0m\s
-        [36mC[0m * * * * *\s
-        [36mC[0m [36mS[0m * * * *\s
-        [36mC[0m [36mS[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
-        [36mC[0m [36mS[0m * * * *\s
+        [36mC[0m * [36mS[0m [36mS[0m [36mS[0m *\s
+        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m [36mB[0m * * * *\s
+        [36mC[0m [36mB[0m [36mD[0m [36mD[0m [36mD[0m [36mD[0m\s
+        [36mC[0m [36mB[0m * * * *\s
                 
         """.replaceAll("\\n|\\r\\n", System.getProperty("line.separator"));
     battleSalvoConsoleView.displayBoard(player, player.getUserBoard(), BoardType.USER);

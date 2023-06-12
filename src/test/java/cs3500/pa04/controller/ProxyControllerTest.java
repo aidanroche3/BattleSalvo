@@ -65,11 +65,11 @@ class ProxyControllerTest extends JsonTest {
         + System.getProperty("line.separator")
         + "{\"method-name\":\"setup\",\"arguments\":{\"fleet\":[{\"coord\":{\"x\":0,\"y\":0},"
             + "\"length\":6,\"direction\":\"VERTICAL\"},{\"coord\":{\"x\":1,\"y\":1},\"length\":5,"
-            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":2,\"y\":4},\"length\":4,"
-            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":1,\"y\":3},\"length\":3,"
-            + "\"direction\":\"VERTICAL\"}]}}" + System.getProperty("line.separator")
-        + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":2,\"y\":3},"
-            + "{\"x\":4,\"y\":4},{\"x\":3,\"y\":3},{\"x\":4,\"y\":3}]}}"
+            + "\"direction\":\"VERTICAL\"},{\"coord\":{\"x\":2,\"y\":4},\"length\":4,"
+            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":2,\"y\":0},\"length\":3,"
+            + "\"direction\":\"HORIZONTAL\"}]}}" + System.getProperty("line.separator")
+        + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":1,\"y\":4},"
+            + "{\"x\":5,\"y\":5},{\"x\":2,\"y\":3},{\"x\":3,\"y\":5}]}}"
             + System.getProperty("line.separator")
         + "{\"method-name\":\"report-damage\",\"arguments\":{\"coordinates\":[{\"x\":0,\"y\":0},"
             + "{\"x\":1,\"y\":3}]}}" + System.getProperty("line.separator")
@@ -129,18 +129,18 @@ class ProxyControllerTest extends JsonTest {
             + System.getProperty("line.separator")
             + "{\"method-name\":\"setup\",\"arguments\":{\"fleet\":[{\"coord\":{\"x\":0,\"y\":0},"
             + "\"length\":6,\"direction\":\"VERTICAL\"},{\"coord\":{\"x\":1,\"y\":1},\"length\":5,"
-            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":2,\"y\":4},\"length\":4,"
-            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":1,\"y\":3},\"length\":3,"
-            + "\"direction\":\"VERTICAL\"}]}}" + System.getProperty("line.separator")
-            + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":2,\"y\":3},"
-            + "{\"x\":4,\"y\":4},{\"x\":3,\"y\":3},{\"x\":4,\"y\":3}]}}"
+            + "\"direction\":\"VERTICAL\"},{\"coord\":{\"x\":2,\"y\":4},\"length\":4,"
+            + "\"direction\":\"HORIZONTAL\"},{\"coord\":{\"x\":2,\"y\":0},\"length\":3,"
+            + "\"direction\":\"HORIZONTAL\"}]}}" + System.getProperty("line.separator")
+            + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":1,\"y\":4},"
+            + "{\"x\":5,\"y\":5},{\"x\":2,\"y\":3},{\"x\":3,\"y\":5}]}}"
             + System.getProperty("line.separator")
             + "{\"method-name\":\"report-damage\",\"arguments\":{\"coordinates\":[{\"x\":0,\"y\":0}"
             + ",{\"x\":1,\"y\":3}]}}" + System.getProperty("line.separator")
             + "{\"method-name\":\"successful-hits\",\"arguments\":{}}"
             + System.getProperty("line.separator")
-            + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":3,\"y\":1},"
-            + "{\"x\":5,\"y\":5},{\"x\":3,\"y\":5},{\"x\":1,\"y\":0}]}}"
+            + "{\"method-name\":\"take-shots\",\"arguments\":{\"coordinates\":[{\"x\":5,\"y\":0},"
+            + "{\"x\":0,\"y\":3},{\"x\":4,\"y\":1},{\"x\":0,\"y\":2}]}}"
             + System.getProperty("line.separator")
             + "{\"method-name\":\"report-damage\",\"arguments\":{\"coordinates\":[]}}"
             + System.getProperty("line.separator")

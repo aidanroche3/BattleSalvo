@@ -157,7 +157,7 @@ public abstract class SalvoPlayer implements Player {
       try {
         c = userBoard[coord.getRow()][coord.getCol() + j];
       } catch (ArrayIndexOutOfBoundsException e) {
-        return placeHorizontalShip(type);
+        return placeVerticalShip(type);
       }
       if (!c.isEmpty()) {
         return placeVerticalShip(type);

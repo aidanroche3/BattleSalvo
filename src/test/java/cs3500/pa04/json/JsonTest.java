@@ -21,17 +21,17 @@ public abstract class JsonTest {
   private final CoordJson carrierCoord = new CoordJson(0, 0);
   private final ShipJson carrier = new ShipJson(carrierCoord, 6, Direction.VERTICAL);
   private final CoordJson battleshipCoord = new CoordJson(1, 1);
-  private final ShipJson battleship = new ShipJson(battleshipCoord, 5, Direction.HORIZONTAL);
+  private final ShipJson battleship = new ShipJson(battleshipCoord, 5, Direction.VERTICAL);
   private final CoordJson destroyerCoord = new CoordJson(2, 4);
   private final ShipJson destroyer = new ShipJson(destroyerCoord, 4, Direction.HORIZONTAL);
-  private final CoordJson submarineCoord = new CoordJson(1, 3);
-  private final ShipJson submarine = new ShipJson(submarineCoord, 3, Direction.VERTICAL);
+  private final CoordJson submarineCoord = new CoordJson(2, 0);
+  private final ShipJson submarine = new ShipJson(submarineCoord, 3, Direction.HORIZONTAL);
   protected final ShipJson[] ships = new ShipJson[]{carrier, battleship, destroyer, submarine};
 
-  private final CoordJson takeShotOne = new CoordJson(2, 3);
-  private final CoordJson takeShotTwo = new CoordJson(4, 4);
-  private final CoordJson takeShotThree = new CoordJson(3, 3);
-  private final CoordJson takeShotFour = new CoordJson(4, 3);
+  private final CoordJson takeShotOne = new CoordJson(1, 4);
+  private final CoordJson takeShotTwo = new CoordJson(5, 5);
+  private final CoordJson takeShotThree = new CoordJson(2, 3);
+  private final CoordJson takeShotFour = new CoordJson(3, 5);
   protected final CoordJson[] shots =
       new CoordJson[]{takeShotOne, takeShotTwo, takeShotThree, takeShotFour};
 

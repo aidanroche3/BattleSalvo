@@ -32,7 +32,8 @@ public class ComputerPlayer extends SalvoPlayer {
     List<Coord> shots = new ArrayList<>();
     while (shots.size() < this.getShotCount()) {
       int index = random.nextInt(this.remainingCoords.size());
-      shots.add(remainingCoords.remove(index));
+      Coord shot = remainingCoords.remove(index);
+      shots.add(shot);
     }
     setCurrentTurnShots(shots);
     return shots;
