@@ -26,7 +26,7 @@ class DriverTest {
   }
 
   /**
-   * Tests the Driver for exceptions
+   * Tests the Driver for exceptions and errors
    */
   @Test
   public void testDriverExceptions() {
