@@ -1,10 +1,10 @@
 # Change Log
 
-## Computer Player
+## ComputerPlayer
 
 - Now takes in a Randomable object instead of a Random, to allow for tests with a MockRandom
 
-## Console Player
+## ConsolePlayer
 
 - Now takes in a Randomable object instead of a Random, to allow for tests with a MockRandom
 
